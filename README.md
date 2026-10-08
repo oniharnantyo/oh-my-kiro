@@ -82,7 +82,7 @@ graph LR
 
 The `setup` skill detects whether the power is project-installed (then uses project scope without asking), otherwise asks **project** (`.kiro/`) or **global** (`~/.kiro/`). It then asks which **cost preset** the team should use:
 
-| Preset | low (`executor-low`) | medium (`planner`, `verifier`, `executor-medium`) | high (`executor-high`, `debugger`, `critic`) |
+| Preset | low (`executor-low`) | medium (`verifier`, `executor-medium`) | high (`planner`, `executor-high`, `debugger`, `critic`) |
 | --- | --- | --- | --- |
 | **cheap** | `qwen3-coder-next` (0.05x) | `minimax-m2.5` (0.25x) | `glm-5` (0.5x) |
 | **medium** (default) | `minimax-m2.5` (0.25x) | `claude-haiku-4.5` (0.4x) | `claude-sonnet-5.5` (1.3x) |
@@ -98,7 +98,7 @@ Custom mixes are possible with per-tier overrides (`--model-low`, `--model-mediu
 
 It then dry-runs and installs the payload — 7 worker agents (each injected with its preset model), `steering/team.md`, and the hooks — rewriting hook script paths per scope.
 
-Without a preset flag, the installer defaults to **medium**: `executor-low` → `minimax-m2.5`; `planner`, `verifier`, `executor-medium` → `claude-haiku-4.5`; `executor-high`, `debugger`, `critic` → `claude-sonnet-5.5`.
+Without a preset flag, the installer defaults to **medium**: `executor-low` → `minimax-m2.5`; `verifier`, `executor-medium` → `claude-haiku-4.5`; `planner`, `executor-high`, `debugger`, `critic` → `claude-sonnet-5.5`.
 
 > **Reasoning effort is not an agent setting.** Kiro's agent config has no effort field — effort is configured per session (`/effort`, `--effort`) or per model in settings (`chat.modelDefaults` in `~/.kiro/settings/cli.json`). See [Reasoning effort](https://kiro.dev/docs/models/effort.md).
 

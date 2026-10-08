@@ -30,8 +30,8 @@ and https://kiro.dev/docs/models.md):
 
 Tier -> worker mapping:
   low     executor-low
-  medium  executor-medium, planner, verifier
-  high    executor-high, debugger, critic
+  medium  executor-medium, verifier
+  high    planner, executor-high, debugger, critic
 
 Copies:
   agents/*.md           -> <target>/.kiro/agents/          (each gets its preset `model:`)
@@ -53,8 +53,8 @@ import sys
 TIER_AGENTS = {
     "executor-low": "low",
     "executor-medium": "medium",
-    "planner": "medium",
     "verifier": "medium",
+    "planner": "high",
     "executor-high": "high",
     "debugger": "high",
     "critic": "high",

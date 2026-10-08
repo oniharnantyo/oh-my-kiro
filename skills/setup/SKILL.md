@@ -64,7 +64,7 @@ which cost preset to use:
 
 > Which model preset should the team use?
 >
-> | Preset | low (executor-low) | medium (planner, verifier, executor-medium) | high (executor-high, debugger, critic) |
+> | Preset | low (executor-low) | medium (verifier, executor-medium) | high (planner, executor-high, debugger, critic) |
 > | --- | --- | --- | --- |
 > | **cheap** | `qwen3-coder-next` (0.05x) | `minimax-m2.5` (0.25x) | `glm-5` (0.5x) |
 > | **medium** (default) | `minimax-m2.5` (0.25x) | `claude-haiku-4.5` (0.4x) | `claude-sonnet-5.5` (1.3x) |
