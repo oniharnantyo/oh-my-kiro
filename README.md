@@ -19,9 +19,16 @@ Inspired by [oh-my-claudecode](https://github.com/Yeachan-Heo/oh-my-claudecode).
 
 ## Quick Start
 
-```bash
-# 1. Install the power
-kiro-cli --v3 powers install https://github.com/oniharnantyo/oh-my-kiro
+**1. Install the power** — pick one:
+
+```text
+# IDE — from GitHub (recommended)
+Powers panel → Add Custom Power → Import power from GitHub
+→ https://github.com/oniharnantyo/oh-my-kiro
+
+# CLI V3 — from a local clone (the CLI takes a catalog name or local path, not a GitHub URL)
+git clone https://github.com/oniharnantyo/oh-my-kiro && cd oh-my-kiro
+/powers install .
 ```
 
 ```text
@@ -31,8 +38,6 @@ kiro-cli --v3 powers install https://github.com/oniharnantyo/oh-my-kiro
 # 3. Run a team
 /team fix all TypeScript errors
 ```
-
-> In the IDE, install instead via Powers panel → **Add Custom Power** → **Import power from GitHub** with the same repo URL.
 
 **Setup is mandatory** — the team skill dispatches installed worker agents by name. Run it once per machine with **global** scope, or once per project with **project** scope:
 
