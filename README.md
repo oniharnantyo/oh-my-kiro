@@ -17,6 +17,16 @@ oh-my-kiro is a [Kiro power](https://kiro.dev/docs/powers/) that fans one goal o
 
 Inspired by [oh-my-claudecode](https://github.com/Yeachan-Heo/oh-my-claudecode). Built on the [Agent Plugins](https://agent-plugins.org/) v1.0.0 specification. See [Credits](#credits).
 
+## Why oh-my-kiro?
+
+**Spend credits based on task complexity.** Pick a cost preset — cheap, medium, premium, or openai — and each worker tier gets a model matched to its job: trivial edits run on cheap open-weight models, structural work gets the strongest reasoning.
+
+![Model preset selection during setup](assets/preset-selection.png)
+
+**Tasks run in parallel.** Independent tasks are dispatched at the same time as isolated subagents — a wave of executors works simultaneously instead of sequentially, then verification gates the result.
+
+![Three executor agents dispatching foundation tasks in parallel](assets/parallel-dispatch.png)
+
 ## Quick Start
 
 **1. Install the power** — pick one:
@@ -136,6 +146,9 @@ oh-my-kiro/
 │   ├── executor-medium.md
 │   ├── planner.md
 │   └── verifier.md
+├── assets/                  # README screenshots
+│   ├── parallel-dispatch.png
+│   └── preset-selection.png
 ├── hooks/                   # payload — installed by setup
 │   ├── scripts/
 │   │   ├── guard_hook.py
