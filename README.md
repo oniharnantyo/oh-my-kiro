@@ -22,14 +22,34 @@ Inspired by [oh-my-claudecode](https://github.com/Yeachan-Heo/oh-my-claudecode).
 **1. Install the power** — pick one:
 
 ```text
-# IDE — from GitHub (recommended)
+# IDE — from GitHub (no download needed)
 Powers panel → Add Custom Power → Import power from GitHub
 → https://github.com/oniharnantyo/oh-my-kiro
+```
 
-# CLI V3 — from a local clone (the CLI takes a catalog name or local path, not a GitHub URL)
-git clone https://github.com/oniharnantyo/oh-my-kiro && cd oh-my-kiro
+```bash
+# CLI V3 — one line, no clone required
+curl -fsSL https://raw.githubusercontent.com/oniharnantyo/oh-my-kiro/main/install.sh | bash
+```
+
+<details>
+<summary>Other CLI options</summary>
+
+```bash
+# From a local checkout (if you already cloned it)
+./install.sh
+
+# Pin a version
+./install.sh --ref v0.1.0
+
+# Raw CLI, from a local directory
 /powers install .
 ```
+
+`install.sh` downloads the power tarball to a temp directory and runs
+`kiro-cli --v3 powers install .` there — no git needed.
+
+</details>
 
 ```text
 # 2. Run setup — required. Asks your scope and cost preset, then installs.
@@ -130,8 +150,9 @@ oh-my-kiro/
 ├── steering/                # payload — installed by setup
 │   └── team.md
 ├── LICENSE
-├── plugin.json
-└── README.md
+├── README.md
+├── install.sh
+└── plugin.json
 ```
 
 ## Documentation
@@ -141,6 +162,7 @@ oh-my-kiro/
 | [`skills/setup/SKILL.md`](skills/setup/SKILL.md) | Setup skill — scope + cost-preset questions, install flow |
 | [`skills/team/SKILL.md`](skills/team/SKILL.md) | Team skill — pipeline phases, dispatch modes, inlined role prompts |
 | [`plugin.json`](plugin.json) | Power manifest — identity and activation keywords |
+| [`install.sh`](install.sh) | CLI installer — downloads the tarball and runs `kiro-cli --v3 powers install` |
 | [`hooks/team-state.json`](hooks/team-state.json) | Team-state hook wiring |
 | [`hooks/bash-guard.json`](hooks/bash-guard.json) | Destructive-command guard |
 | [`LICENSE`](LICENSE) | MIT |
