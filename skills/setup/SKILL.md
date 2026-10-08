@@ -72,11 +72,9 @@ which cost preset to use:
 > | **openai** | `gpt-5.6-luna` (0.6x) | `gpt-5.6-terra` (2.2x) | `gpt-5.6-terra` (2.2x) |
 >
 > - **cheap** — open-weight models throughout; best for high-volume or cost-sensitive runs.
-> - **medium** — cheap for trivial work, Haiku for scoped work, Sonnet 5 for structural work.
-> - **premium** — Haiku as the floor, Sonnet 5 for scoped work, Sonnet 5.5 (newest) for structural work.
-> - **openai** — All openai models.
->
-> No preset uses Opus — Sonnet-class models cover the high tier at ~1.3x cost.
+> - **medium** — cheap for trivial work, Haiku for scoped work, Sonnet 5.5 for structural work.
+> - **premium** — Haiku as the floor, Sonnet 5.5 for scoped work, Opus 5.5 for structural work.
+> - **openai** — GPT-5.6 models throughout: Luna for light work, Terra for the rest.
 
 If the user wants a custom mix instead of a preset, accept per-tier overrides
 (`--model-low`, `--model-medium`, `--model-high`) or any model IDs they name.
@@ -102,9 +100,10 @@ python3 <power-root>/skills/setup/scripts/install.py \
   --scope project \
   --preset medium
 
-# cheap preset (budget) or premium preset (highest quality)
+# other presets
 python3 <power-root>/skills/setup/scripts/install.py --scope project --preset cheap
 python3 <power-root>/skills/setup/scripts/install.py --scope project --preset premium
+python3 <power-root>/skills/setup/scripts/install.py --scope project --preset openai
 ```
 
 The installer:

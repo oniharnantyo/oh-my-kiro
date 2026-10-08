@@ -1,7 +1,7 @@
 ---
 description: Adversarial quality gate for the oh-my-kiro team pipeline. Reviews a plan or completed diff for flaws, gaps, and weak decisions before acceptance. Read-only — does not edit.
 tools: ["read", "shell", "todo_list"]
-model: claude-sonnet-5
+model: claude-sonnet-5.5
 permissions:
   rules:
     - capability: shell

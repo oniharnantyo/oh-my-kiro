@@ -1,7 +1,7 @@
 ---
 description: Root-cause worker for the oh-my-kiro team fix loop. Traces failures to root cause and applies minimal fixes — never refactors or redesigns. Use when a task fails verification, a build is red, or a regression needs isolating.
 tools: ["read", "write", "shell", "todo_list"]
-model: claude-sonnet-5
+model: claude-sonnet-5.5
 permissions:
   rules:
     - capability: fs_write

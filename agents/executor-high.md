@@ -1,7 +1,7 @@
 ---
 description: Deep implementation worker for complex oh-my-kiro team tasks — structural or cross-cutting changes where invariants and blast radius matter. Use for architecture-adjacent edits, tricky edge cases, or high regression risk.
 tools: ["read", "write", "shell", "todo_list"]
-model: claude-sonnet-5
+model: claude-sonnet-5.5
 permissions:
   rules:
     - capability: fs_write

@@ -8,20 +8,25 @@ Usage:
                       [--model-low MODEL] [--model-medium MODEL] [--model-high MODEL]
                       [--target DIR] [--power-root DIR] [--dry-run]
 
-Model presets by credit cost (verified against `kiro-cli chat --list-models`):
+Model presets by credit cost (verified against `kiro-cli chat --list-models`
+and https://kiro.dev/docs/models.md):
 
   cheap:
      low:    qwen3-coder-next     0.05x
-     medium: minimax-m2.1         0.15x
-     high:   minimax-m2.5         0.25x
+     medium: minimax-m2.5         0.25x
+     high:   glm-5                0.50x
   medium:
      low:    minimax-m2.5         0.25x
      medium: claude-haiku-4.5     0.40x
-     high:   claude-sonnet-5      1.30x
+     high:   claude-sonnet-5.5    1.30x
   premium:
      low:    claude-haiku-4.5     0.40x
-     medium: claude-sonnet-5      1.30x
-     high:   claude-sonnet-5.5    1.30x
+     medium: claude-sonnet-5.5    1.30x
+     high:   claude-opus-5.5      2.00x
+  openai:
+     low:    gpt-5.6-luna         0.60x
+     medium: gpt-5.6-terra        2.20x
+     high:   gpt-5.6-terra        2.20x
 
 Tier -> worker mapping:
   low     executor-low
@@ -59,18 +64,23 @@ TIER_AGENTS = {
 PRESETS = {
     "cheap": {
         "low": "qwen3-coder-next",       # 0.05x
-        "medium": "minimax-m2.1",        # 0.15x
-        "high": "minimax-m2.5",          # 0.25x
+        "medium": "minimax-m2.5",        # 0.25x
+        "high": "glm-5",                 # 0.50x
     },
     "medium": {
         "low": "minimax-m2.5",           # 0.25x
         "medium": "claude-haiku-4.5",    # 0.40x
-        "high": "claude-sonnet-5",       # 1.30x
+        "high": "claude-sonnet-5.5",     # 1.30x
     },
     "premium": {
         "low": "claude-haiku-4.5",       # 0.40x
-        "medium": "claude-sonnet-5",     # 1.30x
-        "high": "claude-sonnet-5.5",     # 1.30x
+        "medium": "claude-sonnet-5.5",   # 1.30x
+        "high": "claude-opus-5.5",       # 2.00x
+    },
+    "openai": {
+        "low": "gpt-5.6-luna",           # 0.60x
+        "medium": "gpt-5.6-terra",       # 2.20x
+        "high": "gpt-5.6-terra",         # 2.20x
     },
 }
 
