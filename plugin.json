@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "oh-my-kiro",
+  "version": "0.1.0",
+  "description": "Parallel subagent team executor for Kiro: fan one goal out across planner, executor, debugger, verifier, and critic workers on a shared task list. A setup skill installs the team worker agents (with per-tier models), team-state hooks, and a Bash safety guard into project or global Kiro scope.",
+  "author": {
+    "name": "oniharnantyo"
+  },
+  "keywords": ["team of subagents", "parallel subagents", "subagent team", "parallel agents", "multi-agent orchestration", "worker agents", "oh-my-kiro"],
+  "license": "MIT"
+}

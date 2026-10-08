@@ -1,0 +1,7 @@
+.DS_Store
+.team/
+__pycache__/
+*.pyc
+
+# Reference source (local only — not part of the published power)
+oh-my-zcode/

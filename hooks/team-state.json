@@ -1,0 +1,62 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "team-state-session-start",
+      "description": "Inject the active team run's goal and progress so a restarted session resumes instead of re-planning.",
+      "trigger": "SessionStart",
+      "action": {
+        "type": "command",
+        "command": "python3 .kiro/hooks/scripts/team_hook.py session-start"
+      },
+      "timeout": 10,
+      "enabled": true
+    },
+    {
+      "name": "team-state-prompt-submit",
+      "description": "Remind the agent of an active team run, with open task IDs, on every prompt.",
+      "trigger": "UserPromptSubmit",
+      "action": {
+        "type": "command",
+        "command": "python3 .kiro/hooks/scripts/team_hook.py prompt-submit"
+      },
+      "timeout": 10,
+      "enabled": true
+    },
+    {
+      "name": "team-state-dispatch-log",
+      "description": "Log every subagent dispatch to .team/log.md while a team run is active.",
+      "trigger": "PreToolUse",
+      "matcher": "subagent|invoke_sub_agent|run_workflow",
+      "action": {
+        "type": "command",
+        "command": "python3 .kiro/hooks/scripts/team_hook.py pre-tool-use"
+      },
+      "timeout": 10,
+      "enabled": true
+    },
+    {
+      "name": "team-state-completion-log",
+      "description": "Log every subagent completion (with its STATUS line) to .team/log.md while a team run is active.",
+      "trigger": "PostToolUse",
+      "matcher": "subagent|invoke_sub_agent|run_workflow",
+      "action": {
+        "type": "command",
+        "command": "python3 .kiro/hooks/scripts/team_hook.py post-tool-use"
+      },
+      "timeout": 10,
+      "enabled": true
+    },
+    {
+      "name": "team-state-stop",
+      "description": "Append a session-end summary and flag team runs that ended with open tasks.",
+      "trigger": "Stop",
+      "action": {
+        "type": "command",
+        "command": "python3 .kiro/hooks/scripts/team_hook.py stop"
+      },
+      "timeout": 10,
+      "enabled": true
+    }
+  ]
+}

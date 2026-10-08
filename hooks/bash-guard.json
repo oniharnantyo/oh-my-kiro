@@ -1,0 +1,17 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "bash-guard",
+      "description": "Block clearly destructive shell commands (recursive/forced rm at / or ~, force push, disk wipes, SQL DROP, history wipes) before they run. Set enabled: false to disable.",
+      "trigger": "PreToolUse",
+      "matcher": "execute_bash|execute_cmd|shell",
+      "action": {
+        "type": "command",
+        "command": "python3 .kiro/hooks/scripts/guard_hook.py"
+      },
+      "timeout": 10,
+      "enabled": true
+    }
+  ]
+}
