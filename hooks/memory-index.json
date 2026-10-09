@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "memory-index",
+      "description": "Inject the project's persistent memory index at session start so preferences, feedback, and project context are recalled across conversations.",
+      "trigger": "SessionStart",
+      "action": {
+        "type": "command",
+        "command": "python3 .kiro/hooks/scripts/memory_index_hook.py"
+      },
+      "timeout": 10,
+      "enabled": true
+    }
+  ]
+}

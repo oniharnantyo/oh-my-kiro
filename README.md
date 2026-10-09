@@ -27,6 +27,10 @@ Inspired by [oh-my-claudecode](https://github.com/Yeachan-Heo/oh-my-claudecode).
 
 ![Three executor agents dispatching foundation tasks in parallel](assets/parallel-dispatch.png)
 
+**The agent remembers between sessions.** Preferences, corrections, and project context persist in a per-project memory store recalled at session start — ask which linter you prefer a week later, and it still knows.
+
+![Memory recall — the agent answers a preference question from the project's stored memories](assets/memory-recall.png)
+
 ## Quick Start
 
 **1. Install the power** — pick one:
@@ -41,6 +45,16 @@ Powers panel → Add Custom Power → Import power from GitHub
 # CLI V3 — one line, no clone required
 curl -fsSL https://raw.githubusercontent.com/oniharnantyo/oh-my-kiro/main/install.sh | bash
 ```
+
+```text
+# Or let the agent do it — paste this as a chat message in any Kiro session:
+Install the oh-my-kiro power by running:
+curl -fsSL https://raw.githubusercontent.com/oniharnantyo/oh-my-kiro/main/install.sh | bash
+```
+
+The agent has shell access, so it runs the same installer itself — no native
+install tool needed. The power registers when the command finishes; open a fresh
+session and continue with step 2.
 
 <details>
 <summary>Other CLI options</summary>
@@ -63,10 +77,11 @@ curl -fsSL https://raw.githubusercontent.com/oniharnantyo/oh-my-kiro/main/instal
 
 ```text
 # 2. Run setup — required. Asks your scope and cost preset, then installs.
-/setup
+#    Powers don't register slash commands — send these as chat messages.
+setup oh-my-kiro
 
 # 3. Run a team
-/team fix all TypeScript errors
+team fix all TypeScript errors
 ```
 
 **Setup is mandatory** — the team skill dispatches installed worker agents by name. Run it once per machine with **global** scope, or once per project with **project** scope:
@@ -75,6 +90,8 @@ curl -fsSL https://raw.githubusercontent.com/oniharnantyo/oh-my-kiro/main/instal
 | --- | --- | --- |
 | **Project** (`.kiro/`) | Once per project | Agents are created inside that project's `.kiro/agents/` — every new project needs setup again |
 | **Global** (`~/.kiro/`) | Once per machine | Agents live in `~/.kiro/agents/` and serve every project |
+
+**After a power update**, run setup again in each installed scope — it inspects what's already there, reports what the new power adds or changes (missing payload files, drifted hooks/scripts), and refreshes in place while keeping your current executor models unless you ask to change the preset.
 
 ## How it works
 
@@ -134,6 +151,30 @@ Installed by setup. They only act while a team run is active (`.team/state.json`
 
 > The upstream plugin's `PermissionRequest` auto-approval has no Kiro equivalent and is not ported.
 
+## Persistent memory
+
+**Your corrections outlive the session.** A second, optional payload keeps per-project memory under `~/.kiro/memories/projects/<slug>-<hash16>/memory/` — one fact per markdown file, indexed by a `MEMORY.md` that a SessionStart hook recalls into context. Preferences, mistakes you corrected, project context: saved once, back in context at the start of every later Kiro session.
+
+| Command | Behavior |
+| --- | --- |
+| `/memory save <fact>` | Writes the fact file immediately — when you ask, it saves now, not "later" |
+| `/memory forget <topic>` | Deletes the matching memories |
+| `/memory show` | Prints what is stored for this project |
+
+The agent also updates an existing fact instead of filing a duplicate, and forgets on request.
+
+### Opt-in via setup
+
+Two extra setup questions (**setup oh-my-kiro** asks them): **enable memory?** and **enable auto-capture?** The memory and team payloads are independent — team users can skip memory entirely, and memory works without ever running a team.
+
+### Auto-capture (opt-in)
+
+After each turn that passes the gates — a prompt of at least 3 words, nothing already saved this turn, no extraction in flight — a detached background run of the `memory-extractor` agent reads the session transcript tail and updates memory. The extractor is locked to `minimax-m2.1`, the 0.15x cost tier: the ceiling is one cheap background model call per qualifying turn, and a no-op turn costs nothing. A sentinel blocks recursive runs, and every failure is fail-open — extraction problems never surface in the conversation.
+
+### Graceful degradation
+
+Auto-capture reads Kiro's undocumented transcript storage. If a kiro-cli update changes it, only auto-capture stops — recall, `/memory`, and steering keep working. The "memory last updated N days ago" line at session start is the canary: when it starts climbing, extraction is what broke.
+
 ## Project Structure
 
 ```text
@@ -144,6 +185,7 @@ oh-my-kiro/
 │   ├── executor-high.md
 │   ├── executor-low.md
 │   ├── executor-medium.md
+│   ├── memory-extractor.md
 │   ├── planner.md
 │   └── verifier.md
 ├── assets/                  # README screenshots
@@ -152,10 +194,20 @@ oh-my-kiro/
 ├── hooks/                   # payload — installed by setup
 │   ├── scripts/
 │   │   ├── guard_hook.py
-│   │   └── team_hook.py
+│   │   ├── memory_extract_hook.py
+│   │   ├── memory_index_hook.py
+│   │   ├── memory_paths.py
+│   │   ├── memory_turn_hook.py
+│   │   ├── team_hook.py
+│   │   └── test_memory_gates.py
 │   ├── bash-guard.json
+│   ├── memory-extract.json
+│   ├── memory-index.json
+│   ├── memory-turn.json
 │   └── team-state.json
 ├── skills/
+│   ├── memory/
+│   │   └── SKILL.md
 │   ├── setup/
 │   │   ├── scripts/
 │   │   │   └── install.py
@@ -163,6 +215,7 @@ oh-my-kiro/
 │   └── team/
 │       └── SKILL.md
 ├── steering/                # payload — installed by setup
+│   ├── memory.md
 │   └── team.md
 ├── LICENSE
 ├── README.md
