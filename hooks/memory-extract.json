@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "memory-auto-extract",
+      "description": "After each turn, run the gated spawn of a detached memory-extractor sidecall that distills durable preferences, feedback, and project context into the memory root.",
+      "trigger": "Stop",
+      "action": {
+        "type": "command",
+        "command": "python3 .kiro/hooks/scripts/memory_extract_hook.py"
+      },
+      "timeout": 10,
+      "enabled": true
+    }
+  ]
+}

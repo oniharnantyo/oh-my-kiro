@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "memory-turn-stamp",
+      "description": "Stamp each user turn (epoch + whether the prompt carried real prose) into the project's memory root so the auto-capture gate knows a substantial turn happened.",
+      "trigger": "UserPromptSubmit",
+      "action": {
+        "type": "command",
+        "command": "python3 .kiro/hooks/scripts/memory_turn_hook.py"
+      },
+      "timeout": 10,
+      "enabled": true
+    }
+  ]
+}

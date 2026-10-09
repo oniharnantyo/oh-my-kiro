@@ -71,9 +71,10 @@ cat <<'EOF'
 
 done. The power is installed.
 
-Next step (required): open a Kiro session and run
+Next step (required): open a Kiro session and send this as a chat message
+(powers don't register slash commands):
 
-    /setup
+    setup oh-my-kiro
 
 It asks for scope (project or global) and a cost preset (cheap/medium/premium/openai),
 then installs the team worker agents, hooks, and steering.
