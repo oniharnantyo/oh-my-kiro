@@ -169,7 +169,7 @@ Two extra setup questions (**setup oh-my-kiro** asks them): **enable memory?** a
 
 ### Auto-capture (opt-in)
 
-After each turn that passes the gates — a prompt of at least 3 words, nothing already saved this turn, no extraction in flight — a detached background run of the `memory-extractor` agent reads the session transcript tail and updates memory. The extractor is locked to `minimax-m2.1`, the 0.15x cost tier: the ceiling is one cheap background model call per qualifying turn, and a no-op turn costs nothing. A sentinel blocks recursive runs, and every failure is fail-open — extraction problems never surface in the conversation.
+After each turn that passes the gates — a prompt of at least 3 words, nothing already saved this turn, no extraction in flight — a detached background run of the `memory-extractor` agent reads the session transcript tail and updates memory. The extractor is locked to `qwen3-coder-next`, the 0.05x cost tier: the ceiling is one cheap background model call per qualifying turn, and a no-op turn costs nothing. A sentinel blocks recursive runs, and every failure is fail-open — extraction problems never surface in the conversation.
 
 ### Graceful degradation
 

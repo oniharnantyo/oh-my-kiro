@@ -137,7 +137,7 @@ under `~/.kiro/memories/`). Ask these after the preset question, defaulting to
 > install per project.
 
 > *(only if yes)* **Enable background auto-capture?** Adds a Stop hook that makes
-> one cheap background model call per turn (`minimax-m2.1`) to extract durable
+> one cheap background model call per turn (`qwen3-coder-next`) to extract durable
 > facts, plus a `memory-extractor` agent that performs the extraction.
 
 Map the answers to installer flags and spell out the consequences:
@@ -150,7 +150,7 @@ Map the answers to installer flags and spell out the consequences:
 
 `--auto-capture on` requires `--memory on` (the installer rejects it otherwise).
 Before installing with auto-capture, the installer runs `kiro-cli chat
---list-models` and prints a visible warning if `minimax-m2.1` is missing —
+--list-models` and prints a visible warning if `qwen3-coder-next` is missing —
 extraction sidecalls would then silently fall back to the account default model,
 possibly at a much higher cost. If it cannot run the check at all it says so.
 Relay either warning to the user before they confirm.

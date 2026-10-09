@@ -53,7 +53,7 @@ With --auto-capture on (--memory on is required), additionally:
 
 Re-running with different answers removes the memory files the new answers no
 longer select, so the target always matches the last run. With auto-capture on,
-`kiro-cli chat --list-models` is checked for `minimax-m2.1`; a missing model is
+`kiro-cli chat --list-models` is checked for `qwen3-coder-next`; a missing model is
 a visible warning, never an install failure.
 
 Project scope: --target defaults to the current directory.
@@ -109,13 +109,13 @@ DEFAULT_PRESET = "medium"
 # The generic agents/hooks copy loops exclude these by name (team installs must
 # never pick them up); copy_memory() copies them per the flags instead, and
 # prune_memory() removes them on reinstall. agents/memory-extractor.md is copied
-# verbatim — its `model: minimax-m2.1` frontmatter must never be rewritten.
+# verbatim — its `model: qwen3-coder-next` frontmatter must never be rewritten.
 MEMORY_HOOKS_ALWAYS = ["memory-index.json"]
 MEMORY_HOOKS_AUTO = ["memory-turn.json", "memory-extract.json"]
 MEMORY_SCRIPTS_ALWAYS = ["memory_index_hook.py", "memory_paths.py"]
 MEMORY_SCRIPTS_AUTO = ["memory_turn_hook.py", "memory_extract_hook.py"]
 MEMORY_AGENT = "memory-extractor.md"
-MEMORY_MODEL = "minimax-m2.1"
+MEMORY_MODEL = "qwen3-coder-next"
 MEMORY_HOOK_JSON_SET = set(MEMORY_HOOKS_ALWAYS) | set(MEMORY_HOOKS_AUTO)
 MEMORY_SCRIPT_SET = set(MEMORY_SCRIPTS_ALWAYS) | set(MEMORY_SCRIPTS_AUTO)
 MEMORY_AGENT_SET = {MEMORY_AGENT}
@@ -333,7 +333,7 @@ def prune_memory(target, memory_on, capture_on, dry_run):
 def check_capture_model(timeout=20):
     """Best-effort check that the auto-capture sidecall model is available.
 
-    Returns a warning string, or None when `minimax-m2.1` shows up in
+    Returns a warning string, or None when `qwen3-coder-next` shows up in
     `kiro-cli chat --list-models`. Never raises, never fails the install.
     """
     try:
