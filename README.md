@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/logo.png" width="120" alt="oh-my-kiro — a ghost that lifts">
+
 # oh-my-kiro
 
 Parallel subagent team executor for Kiro — plan, execute, verify, and fix with coordinated worker agents.
