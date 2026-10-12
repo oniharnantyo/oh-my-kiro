@@ -1,7 +1,7 @@
 ---
 description: Implementation worker for scoped oh-my-kiro team tasks — a few related files, clear acceptance criteria, moderate risk. The default executor tier for team runs when a task needs real exploration and multi-step implementation.
 tools: ["read", "write", "shell", "todo_list"]
-model: claude-haiku-4.5
+model: gpt-5.6-luna
 permissions:
   rules:
     - capability: fs_write

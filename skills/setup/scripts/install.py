@@ -19,7 +19,7 @@ and https://kiro.dev/docs/models.md):
      high:   glm-5                0.50x
   medium:
      low:    minimax-m2.5         0.25x
-     medium: claude-haiku-4.5     0.40x
+     medium: gpt-5.6-luna         0.60x
      high:   claude-sonnet-5.5    1.30x
   premium:
      low:    claude-haiku-4.5     0.40x
@@ -88,7 +88,7 @@ PRESETS = {
     },
     "medium": {
         "low": "minimax-m2.5",           # 0.25x
-        "medium": "claude-haiku-4.5",    # 0.40x
+        "medium": "gpt-5.6-luna",        # 0.60x
         "high": "claude-sonnet-5.5",     # 1.30x
     },
     "premium": {

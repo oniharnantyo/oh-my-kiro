@@ -107,12 +107,12 @@ which cost preset to use:
 > | Preset | low (executor-low) | medium (verifier, executor-medium) | high (planner, executor-high, debugger, critic) |
 > | --- | --- | --- | --- |
 > | **cheap** | `qwen3-coder-next` (0.05x) | `minimax-m2.5` (0.25x) | `glm-5` (0.5x) |
-> | **medium** (default) | `minimax-m2.5` (0.25x) | `claude-haiku-4.5` (0.4x) | `claude-sonnet-5.5` (1.3x) |
+> | **medium** (default) | `minimax-m2.5` (0.25x) | `gpt-5.6-luna` (0.6x) | `claude-sonnet-5.5` (1.3x) |
 > | **premium** | `claude-haiku-4.5` (0.4x) | `claude-sonnet-5.5` (1.3x) | `claude-opus-5.5` (2.0x) |
 > | **openai** | `gpt-5.6-luna` (0.6x) | `gpt-5.6-terra` (2.2x) | `gpt-5.6-terra` (2.2x) |
 >
 > - **cheap** — open-weight models throughout; best for high-volume or cost-sensitive runs.
-> - **medium** — cheap for trivial work, Haiku for scoped work, Sonnet 5.5 for structural work.
+> - **medium** — cheap for trivial work, Luna for scoped work, Sonnet 5.5 for structural work.
 > - **premium** — Haiku as the floor, Sonnet 5.5 for scoped work, Opus 5.5 for structural work.
 > - **openai** — GPT-5.6 models throughout: Luna for light work, Terra for the rest.
 

@@ -114,12 +114,12 @@ The `setup` skill detects whether the power is project-installed (then uses proj
 | Preset | low (`executor-low`) | medium (`verifier`, `executor-medium`) | high (`planner`, `executor-high`, `debugger`, `critic`) |
 | --- | --- | --- | --- |
 | **cheap** | `qwen3-coder-next` (0.05x) | `minimax-m2.5` (0.25x) | `glm-5` (0.5x) |
-| **medium** (default) | `minimax-m2.5` (0.25x) | `claude-haiku-4.5` (0.4x) | `claude-sonnet-5.5` (1.3x) |
+| **medium** (default) | `minimax-m2.5` (0.25x) | `gpt-5.6-luna` (0.6x) | `claude-sonnet-5.5` (1.3x) |
 | **premium** | `claude-haiku-4.5` (0.4x) | `claude-sonnet-5.5` (1.3x) | `claude-opus-5.5` (2.0x) |
 | **openai** | `gpt-5.6-luna` (0.6x) | `gpt-5.6-terra` (2.2x) | `gpt-5.6-terra` (2.2x) |
 
 - **cheap** — open-weight models throughout; best for high-volume or cost-sensitive runs.
-- **medium** — balanced (default): cheap for trivial work, Haiku for scoped work, Sonnet 5.5 for structural work.
+- **medium** — balanced (default): cheap for trivial work, Luna for scoped work, Sonnet 5.5 for structural work.
 - **premium** — Haiku as the floor, Sonnet 5.5 for scoped work, Opus 5.5 for structural work.
 - **openai** — GPT-5.6 models throughout (Luna for light work, Terra for the rest).
 
@@ -127,7 +127,7 @@ Custom mixes are possible with per-tier overrides (`--model-low`, `--model-mediu
 
 It then dry-runs and installs the payload — 7 worker agents (each injected with its preset model), `steering/team.md`, and the hooks — rewriting hook script paths per scope.
 
-Without a preset flag, the installer defaults to **medium**: `executor-low` → `minimax-m2.5`; `verifier`, `executor-medium` → `claude-haiku-4.5`; `planner`, `executor-high`, `debugger`, `critic` → `claude-sonnet-5.5`.
+Without a preset flag, the installer defaults to **medium**: `executor-low` → `minimax-m2.5`; `verifier`, `executor-medium` → `gpt-5.6-luna`; `planner`, `executor-high`, `debugger`, `critic` → `claude-sonnet-5.5`.
 
 > **Reasoning effort is not an agent setting.** Kiro's agent config has no effort field — effort is configured per session (`/effort`, `--effort`) or per model in settings (`chat.modelDefaults` in `~/.kiro/settings/cli.json`). See [Reasoning effort](https://kiro.dev/docs/models/effort.md).
 

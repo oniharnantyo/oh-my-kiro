@@ -1,7 +1,7 @@
 ---
 description: Evidence-based verification worker for the oh-my-kiro team pipeline. Checks completion claims against fresh test/build output and issues a PASS/FAIL verdict. Read-only — does not author fixes.
 tools: ["read", "shell", "todo_list"]
-model: claude-haiku-4.5
+model: gpt-5.6-luna
 permissions:
   rules:
     - capability: shell
